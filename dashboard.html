@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.11.2/css/all.css"
+      integrity="sha384-KA6wR/X5RY4zFAHpv/CnoG2UW1uogYfdnP67Uv7eULvTveboZJg0qUpmJZb5VqzN"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/dashboard.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <div id="title">Meraki Recognition</div>
+        <div id="main">
+          <div class="title">
+            <span class="title-head"> Global </span>
+            Sliders
+          </div>
+          <div class="content" id="slider">
+            <div class="slider-block" id="apple">
+              <div class="slider-icon">
+                <i class="fab fa-apple fa-fw"></i>
+                <div class="slider-text">Apple</div>
+              </div>
+            </div>
+            <div class="slider-block" id="facebook">
+              <div class="slider-icon">
+                <i class="fab fa-facebook fa-fw"></i>
+                <div class="slider-text">Facebook</div>
+              </div>
+            </div>
+            <div class="slider-block" id="google">
+              <div class="slider-icon">
+                <i class="fab fa-android fa-fw"></i>
+                <div class="slider-text">Google</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="recognition">
+          <div class="title">
+            <span class="title-head"> Image </span>
+            Recognition
+          </div>
+          <div class="content">
+            <div class="inline-block" style="padding-top: 1em;">
+              <div class="inline-block">
+                <canvas id="moodChart" width="200" height="165"></canvas>
+              </div>
+              <div class="inline-block" style="padding-left: 1.5em;">
+                <canvas id="genderChart" width="130" height="165"></canvas>
+              </div>
+              <div class="inline-block" style="padding-left: 3.5em;">
+                <canvas id="myChart" width="350" height="165"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="video">
+          <div class="title">
+            <span class="title-head"> Video </span>
+            Sequence
+          </div>
+          <div
+            class="content"
+            style="display: flex; flex-direction: column; align-items: center; padding-top: 1.5em;"
+            id="video-content"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Template for the balloon - won't be rendered! -->
+    <template id="balloon-slider">
+      <style>
+        svg {
+          width: 150%;
+          height: 150%;
+          visibility: hidden;
+        }
+
+        .upText,
+        .downText {
+          text-anchor: middle;
+          font-weight: 700;
+          font-size: 1.1em;
+          fill: rgba(85, 88, 218, 1);
+          letter-spacing: 0.4px;
+          user-select: none;
+          -webkit-user-select: none;
+          pointer-events: none;
+          text-rendering: optimizeSpeed;
+        }
+
+        .upText {
+          font-size: 2em;
+        }
+
+        .dragger {
+          -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+        }
+
+        .downText {
+          letter-spacing: -0.4px;
+        }
+      </style>
+      <svg
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="90 220 625 110"
+        style="width: 400px; height: 70px; display: inline-block;"
+      >
+        <defs>
+          <filter id="goo" color-interpolation-filters="sRGB">
+            <feGaussianBlur in="SourceGraphic" stdDeviation="8" result="blur" />
+            <feColorMatrix
+              in="blur"
+              mode="matrix"
+              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 21 -7"
+              result="cm"
+            />
+          </filter>
+        </defs>
+        <g id="dragGroup">
+          <!-- <path
+            id="dragBar"
+            fill="#FFFFFF"
+            d="M447,299.5c0,1.4-1.1,2.5-2.5,2.5h-296c-1.4,0-2.5-1.1-2.5-2.5l0,0c0-1.4,1.1-2.5,2.5-2.5
+        h296C445.9,297,447,298.1,447,299.5L447,299.5z"
+          /> -->
+          <path fill="#FFF" d="M647 299 L147 299 L147 303 L647 303 Z" />
+          <g id="displayGroup">
+            <g id="gooGroup" filter="url(#goo)">
+              <circle
+                class="display"
+                fill="#FFFFFF"
+                cx="146"
+                cy="299.5"
+                r="22"
+              />
+              <circle
+                class="dragger"
+                fill="#FFFFFF"
+                stroke="#03A9F4"
+                stroke-width="0"
+                cx="146"
+                cy="299.5"
+                r="20"
+              />
+            </g>
+            <text class="downText" x="146" y="304">0</text>
+            <text class="upText" x="145" y="266" style="opacity: 0;">
+              0
+            </text>
+          </g>
+        </g>
+      </svg>
+    </template>
+
+    <!-- ChartJS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
+
+    <!-- Axios Plugin -->
+    <script src="js/axios.min.js"></script>
+
+    <!-- Slider Plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/utils/Draggable.min.js"></script>
+
+    <!-- Custom JS -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/slider.js"></script>
+    <script src="js/doughnut.js"></script>
+    <script src="js/bar.js"></script>
+    <script src="js/video.js"></script>
+  </body>
+</html>
