@@ -1,9 +1,15 @@
 const fs = require("fs");
 const fetch = require("node-fetch");
 const AWS = require("aws-sdk");
+const proxy = require("proxy-agent");
 
 // get AWS settings
 AWS.config.loadFromPath("./credentials.json");
+if (process.env.PROXY) {
+  AWS.config.update({
+    httpOptions: { agent: proxy(process.env.PROXY) }
+  });
+}
 
 const readFile = function(path) {
   return new Promise((resolve, reject) => {
