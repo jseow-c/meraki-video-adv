@@ -7,11 +7,11 @@ async function snapMeraki(url = null) {
     merakiElement.src = url;
     targetUrl = url;
   } else {
-    const response = await axios.post("http://localhost:3000/snap");
+    const response = await axios.post(`${host}:${port}/snap`);
     merakiElement.src = response.data;
     targetUrl = response.data;
   }
-  const awsResponse = await axios.post("http://localhost:3000/image/aws", {
+  const awsResponse = await axios.post(`${host}:${port}/image/aws`, {
     url: targetUrl
   });
   const total = awsResponse.data.length;

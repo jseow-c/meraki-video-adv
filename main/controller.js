@@ -5,7 +5,7 @@ const client = require("socket.io-client");
 const misc = require("./misc");
 
 // load socket.io-client
-const socket = client.connect("http://localhost:8118");
+const socket = client.connect(`${process.env.HOST}:8118`);
 
 // load variables
 const videoFunction = require("./model");

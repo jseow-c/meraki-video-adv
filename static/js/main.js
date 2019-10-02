@@ -4,8 +4,8 @@ const source = document.createElement("source");
 
 // videoHandler
 async function videoHandler(e, cb = null) {
-  const response = await axios.get("http://localhost:3000/next");
-  source.setAttribute("src", `http://localhost:3000/video/${response.data}`);
+  const response = await axios.get(`${host}:${port}/next`);
+  source.setAttribute("src", `${host}:${port}/video/${response.data}`);
 
   video.load();
   if (cb) cb();

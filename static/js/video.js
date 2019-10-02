@@ -2,7 +2,7 @@
 let videos = [];
 
 // connect to socket.io
-const socket = io("http://localhost:8118");
+const socket = io(`${host}:${socketPort}`);
 
 socket.on("nextVideo", async () => {
   videos = await getVideos();
@@ -17,13 +17,13 @@ socket.on("nextVideo", async () => {
 
 // state all videos
 async function getVideos() {
-  const response = await axios.get("http://localhost:3000/list");
+  const response = await axios.get(`${host}:${port}/list`);
   return response.data;
 }
 
 // change the sequence
 async function changeVideos(videos, cb = null) {
-  await axios.post("http://localhost:3000/list/change", videos);
+  await axios.post(`${host}:${port}/list/change`, videos);
   if (cb) cb();
 }
 

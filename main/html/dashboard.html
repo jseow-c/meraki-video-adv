@@ -16,6 +16,9 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="css/dashboard.css" />
+
+    <!-- host variable -->
+    <script src="js/host.js"></script>
   </head>
   <body>
     <div class="container">
@@ -62,8 +65,8 @@
           <div class="title">
             <span class="title-head"> Image </span>
             Recognition
-            <button class="title-btn" onclick="snapMeraki('http://localhost:3000/img/small.jpg')">Few</button>
-            <button class="title-btn" onclick="snapMeraki('http://localhost:3000/img/crowd.jpg')">Many</button>
+            <button class="title-btn" onclick="snapMeraki(`${host}:${port}/img/small.jpg`)">Few</button>
+            <button class="title-btn" onclick="snapMeraki(`${host}:${port}/img/crowd.jpg`)">Many</button>
           </div>
           <div class="content">
             <div class="flex-center" style="padding-top: 1em;">
@@ -193,6 +196,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
     
     <!-- Custom JS -->
+    <script src="js/host.js"></script>
     <script src="js/dashboard.js"></script>
     <script src="js/slider.js"></script>
     <script src="js/doughnut.js"></script>
