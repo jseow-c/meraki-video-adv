@@ -26,3 +26,5 @@ yarn-error.log*
 /tokens
 .env
 /assets/*.mp4
+credentials.json
+meraki.json

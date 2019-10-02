@@ -19,8 +19,19 @@
   </head>
   <body>
     <div class="container">
-      <div class="card">
-        <div id="title">Meraki Recognition</div>
+      <div class="card" id="card">
+        <div id="title">Meraki Recognition
+            <ul class="card-options">
+                <li>
+                    <input type='radio' value='whole' name='dashboard' onclick="toggleDashboard()" id='radio1' checked />
+                    <label for='radio1'>Whole</label>
+                </li>
+                <li>
+                    <input type='radio' value='image' name='dashboard' onclick="toggleDashboard()" id='radio2' />
+                    <label for='radio2'>Image</label>
+                </li>
+            </ul>
+        </div>
         <div id="main">
           <div class="title">
             <span class="title-head"> Global </span>
@@ -51,17 +62,23 @@
           <div class="title">
             <span class="title-head"> Image </span>
             Recognition
+            <button class="title-btn" onclick="snapMeraki('http://localhost:3000/img/small.jpg')">Few</button>
+            <button class="title-btn" onclick="snapMeraki('http://localhost:3000/img/crowd.jpg')">Many</button>
           </div>
           <div class="content">
-            <div class="inline-block" style="padding-top: 1em;">
-              <div class="inline-block">
-                <canvas id="moodChart" width="200" height="165"></canvas>
-              </div>
-              <div class="inline-block" style="padding-left: 1.5em;">
-                <canvas id="genderChart" width="130" height="165"></canvas>
-              </div>
-              <div class="inline-block" style="padding-left: 3.5em;">
-                <canvas id="myChart" width="350" height="165"></canvas>
+            <div class="flex-center" style="padding-top: 1em;">
+
+              <img src="img/snap.jpg" width="200" class="img" alt="Snap" id="meraki" onclick="snapMeraki(null)"></img>
+              <div class="chart-block">
+                <div class="inline-block" style="margin-left: 20px;">
+                  <canvas id="moodChart" width="160" height="165"></canvas>
+                </div>
+                <div class="inline-block" style="padding-left: 0em;">
+                  <canvas id="genderChart" width="110" height="165"></canvas>
+                </div>
+                <div class="inline-block" style="padding-left: 1em;">
+                  <canvas id="myChart" width="200" height="165"></canvas>
+                </div>
               </div>
             </div>
           </div>
@@ -133,12 +150,6 @@
           </filter>
         </defs>
         <g id="dragGroup">
-          <!-- <path
-            id="dragBar"
-            fill="#FFFFFF"
-            d="M447,299.5c0,1.4-1.1,2.5-2.5,2.5h-296c-1.4,0-2.5-1.1-2.5-2.5l0,0c0-1.4,1.1-2.5,2.5-2.5
-        h296C445.9,297,447,298.1,447,299.5L447,299.5z"
-          /> -->
           <path fill="#FFF" d="M647 299 L147 299 L147 303 L647 303 Z" />
           <g id="displayGroup">
             <g id="gooGroup" filter="url(#goo)">
@@ -178,6 +189,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.19.1/utils/Draggable.min.js"></script>
 
+    <!-- Socket.IO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+    
     <!-- Custom JS -->
     <script src="js/dashboard.js"></script>
     <script src="js/slider.js"></script>

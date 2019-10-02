@@ -1,98 +1,34 @@
 // state all videos
-let videos = [
-  {
-    img: "airpod.jpg",
-    name: "airpod",
-    title: "Apple Airpods",
-    brand: "apple",
-    gender: "female",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "applewatch.jpg",
-    name: "applewatch",
-    title: "Apple Watch",
-    brand: "apple",
-    gender: "male",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "iphone11.jpg",
-    name: "iphone11",
-    title: "Apple Iphone 11",
-    brand: "apple",
-    gender: "female",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "macbook.jpg",
-    name: "macbook",
-    title: "Apple Macbook",
-    brand: "apple",
-    gender: "male",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "oculus.png",
-    name: "oculus",
-    title: "Facebook Oculus",
-    brand: "facebook",
-    gender: "female",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "portal.jpg",
-    name: "portal",
-    title: "Facebook Portal",
-    brand: "facebook",
-    gender: "female",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "workplace.png",
-    name: "workplace",
-    title: "Facebook Workplace",
-    brand: "facebook",
-    gender: "male",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "chromecast.jpg",
-    name: "chromecast",
-    title: "Google Chromecast",
-    brand: "google",
-    gender: "female",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "googlehome.jpg",
-    name: "googlehome",
-    title: "Google Home",
-    brand: "google",
-    gender: "male",
-    minAge: 20,
-    maxAge: 50
-  },
-  {
-    img: "pixel3.png",
-    name: "pixel3",
-    title: "Google Pixel 3",
-    brand: "google",
-    gender: "male",
-    minAge: 20,
-    maxAge: 50
+let videos = [];
+
+// connect to socket.io
+const socket = io("http://localhost:8118");
+
+socket.on("nextVideo", async () => {
+  videos = await getVideos();
+  console.log(videos);
+  // clear list
+  const videoParentElement = document.getElementById("video-content");
+  while (videoParentElement.firstChild) {
+    videoParentElement.removeChild(videoParentElement.firstChild);
   }
-];
+  allVideoShow(videos);
+});
+
+// state all videos
+async function getVideos() {
+  const response = await axios.get("http://localhost:3000/list");
+  return response.data;
+}
+
+// change the sequence
+async function changeVideos(videos, cb = null) {
+  await axios.post("http://localhost:3000/list/change", videos);
+  if (cb) cb();
+}
+
 // initialize video with animation
-const allVideoShow = async () => {
+const allVideoShow = async videos => {
   for (let video of videos) {
     const videoParentElement = document.getElementById("video-content");
     const childTitleElement = document.createElement("div");
@@ -100,7 +36,7 @@ const allVideoShow = async () => {
     childTitleElement.innerHTML = video.title;
     videoParentElement.appendChild(childTitleElement);
     const childVideoElement = document.createElement("img");
-    childVideoElement.src = `/assets/img/${video.img}`;
+    childVideoElement.src = `img/${video.img}`;
     childVideoElement.alt = video.name;
     childVideoElement.className = "v-img slide-fade";
     videoParentElement.appendChild(childVideoElement);
@@ -114,24 +50,17 @@ const allVideoShow = async () => {
       setTimeout(() => {
         childVideoElement.className = "v-img show";
         resolve();
-      }, 200)
+      }, 100)
     );
   }
 };
-allVideoShow();
 
-// simulate rotation of videos
-setInterval(() => {
-  const element = videos.shift();
-  videos.push(element);
-  const videoParentElement = document.getElementById("video-content");
-  const childTitleElement = videoParentElement.childNodes[0];
-  videoParentElement.removeChild(childTitleElement);
-  videoParentElement.appendChild(childTitleElement);
-  const childVideoElement = videoParentElement.childNodes[0];
-  videoParentElement.removeChild(childVideoElement);
-  videoParentElement.appendChild(childVideoElement);
-}, 10000);
+async function startUp() {
+  videos = await getVideos();
+  allVideoShow(videos);
+}
+
+startUp();
 
 // simulate rules to govern video rotation
 function ruleCheck() {
@@ -143,12 +72,13 @@ function ruleCheck() {
   // ];
   sliders.sort((a, b) => b.amt - a.amt);
   const newSliders = sliders.map(a => a.tag);
+  console.log(sliders, newSliders, originalSlider);
   if (JSON.stringify(originalSlider) !== JSON.stringify(newSliders)) {
     // they are different
     originalSlider = newSliders;
     const firstElement = videos[0].name;
     videos.sort((a, b) => {
-      if (b.name === firstElement) return 0;
+      if (b.name === firstElement) return 1;
       else if (a.brand === sliders[0].tag) return -1;
       else if (b.brand === sliders[0].tag) return 1;
       else if (a.brand === sliders[1].tag && b.brand === sliders[2].tag)
@@ -157,11 +87,13 @@ function ruleCheck() {
         return 1;
       else return 0;
     });
-    // clear list
-    const videoParentElement = document.getElementById("video-content");
-    while (videoParentElement.firstChild) {
-      videoParentElement.removeChild(videoParentElement.firstChild);
-    }
-    allVideoShow();
+    console.log(firstElement, videos);
+    changeVideos(videos);
+    // // clear list
+    // const videoParentElement = document.getElementById("video-content");
+    // while (videoParentElement.firstChild) {
+    //   videoParentElement.removeChild(videoParentElement.firstChild);
+    // }
+    // allVideoShow(videos);
   }
 }

@@ -166,7 +166,7 @@ var myChart = new Chart(ctx, {
           randomScalingFactor(),
           randomScalingFactor(),
           randomScalingFactor(),
-          randomScalingFactor()
+          0
         ],
         backgroundColor: "rgba(255,255,255, 0.7)",
         borderColor: "rgba(255,255,255,0.1)",
@@ -180,7 +180,7 @@ var myChart = new Chart(ctx, {
     scales: {
       xAxes: [
         {
-          barThickness: 31,
+          barThickness: 15,
           display: false,
           label: {
             display: false
@@ -193,6 +193,7 @@ var myChart = new Chart(ctx, {
       ],
       yAxes: [
         {
+          minBarLength: 5,
           display: false,
           label: {
             display: false

@@ -6,7 +6,7 @@ body {
   font-family: "Source Sans Pro", sans-serif;
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1680px) {
   body {
     padding: 4em;
     width: calc(100vw - 8em);
@@ -20,7 +20,7 @@ body {
   padding: 2em 5em;
 }
 
-@media (min-width: 1024px) and (max-width: 1439px) {
+@media (min-width: 1024px) and (max-width: 1679px) {
   .container {
     width: calc(100% - 16em);
     height: calc(100% - 4em);
@@ -28,7 +28,7 @@ body {
   }
 }
 
-@media (min-width: 1440px) {
+@media (min-width: 1680px) {
   .container {
     width: calc(100% - 24em);
     height: calc(100% - 4em);
@@ -46,12 +46,107 @@ body {
   background-image: radial-gradient(circle farthest-corner at 12.3% 19.3%, #5558da 0%, #5fd1f9 100.2%);
   display: -ms-grid;
   display: grid;
-  -ms-grid-rows: 2% 10% 36% auto 2%;
-      grid-template-rows: 2% 10% 36% auto 2%;
+  -ms-grid-rows: 2% 8% 34% auto 2%;
+      grid-template-rows: 2% 8% 34% auto 2%;
   -ms-grid-columns: 70% auto;
       grid-template-columns: 70% auto;
   row-gap: 2em;
       grid-template-areas: ". video" "title video" "main video" "recognition video" ". .";
+}
+
+.container .card.image-only {
+      grid-template-areas: ". video" "title video" "recognition video" "recognition video" ". .";
+}
+
+.container .card.image-only #main {
+  display: none;
+}
+
+.container .card.image-only #recognition .content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .card.image-only #recognition .content .flex-center {
+  display: block;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .card.image-only #recognition .content .flex-center .img {
+  width: 60%;
+  height: 324px;
+  margin: auto;
+  margin-bottom: 2em;
+  display: block;
+  background-color: #fafafa;
+  -webkit-filter: drop-shadow(0.4em 0.75em 0.2em rgba(85, 88, 85, 0.2));
+          filter: drop-shadow(0.4em 0.75em 0.2em rgba(85, 88, 85, 0.2));
+  border: none;
+  border-radius: 1em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+  cursor: pointer;
+}
+
+.container .card.image-only #recognition .content .flex-center .img:hover {
+  -webkit-transform: scale(1.05, 1.05);
+          transform: scale(1.05, 1.05);
+}
+
+.container .card.image-only #recognition .content .flex-center .chart-block {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.container .card.image-only #recognition .content .flex-center .inline-block {
+  display: inline-block;
+}
+
+.container .card ul.card-options {
+  display: inline-block;
+  list-style: none;
+  padding: 0;
+  font-size: 0.3em;
+}
+
+.container .card ul.card-options li {
+  display: inline-block;
+}
+
+.container .card ul.card-options li input {
+  display: none;
+}
+
+.container .card ul.card-options li input:checked + label {
+  background-color: #888;
+  color: #fafafa;
+}
+
+.container .card ul.card-options li label {
+  border: none;
+  padding: 3.5px 7.5px;
+  background: none;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  color: #555;
+  cursor: pointer;
+}
+
+.container .card ul.card-options li label:hover {
+  background-color: #888;
+  color: #fafafa;
 }
 
 .container .card .title {
@@ -64,6 +159,21 @@ body {
   color: #5fd1f9;
 }
 
+.container .card .title .title-btn {
+  border: none;
+  padding: 3.5px 7.5px;
+  background: none;
+  background-color: #e8e8e8;
+  border-radius: 5px;
+  color: #555;
+  cursor: pointer;
+}
+
+.container .card .title .title-btn:hover {
+  background-color: #888;
+  color: #fafafa;
+}
+
 .container .card #title {
   -ms-grid-row: 2;
   -ms-grid-column: 1;
@@ -73,6 +183,7 @@ body {
   color: #fafafa;
   font-weight: 700;
   font-size: 2.75em;
+  display: inline-block;
 }
 
 .container .card #main {
@@ -101,7 +212,8 @@ body {
 }
 
 .container .card #recognition {
-  -ms-grid-row: 4;
+  -ms-grid-row: 3;
+  -ms-grid-row-span: 2;
   -ms-grid-column: 1;
   grid-area: recognition;
   width: calc(100% - 10em);
@@ -114,7 +226,38 @@ body {
   height: calc(100% - 28px);
 }
 
-.container .card #recognition .content .inline-block {
+.container .card #recognition .content .flex-center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.container .card #recognition .content .flex-center .img {
+  width: 200px;
+  height: 135px;
+  background-color: #fafafa;
+  -webkit-filter: drop-shadow(0.4em 0.75em 0.2em rgba(85, 88, 85, 0.2));
+          filter: drop-shadow(0.4em 0.75em 0.2em rgba(85, 88, 85, 0.2));
+  border: none;
+  border-radius: 1em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  transition: -webkit-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-out, -webkit-transform 0.2s ease-out;
+  cursor: pointer;
+}
+
+.container .card #recognition .content .flex-center .img:hover {
+  -webkit-transform: scale(1.1, 1.1);
+          transform: scale(1.1, 1.1);
+}
+
+.container .card #recognition .content .flex-center .inline-block {
   display: inline-block;
 }
 
@@ -126,7 +269,7 @@ body {
   background-color: rgba(255, 255, 255, 0.075);
   border-top-right-radius: 5em;
   border-bottom-right-radius: 5em;
-  padding-top: 3em;
+  padding-top: 4em;
   height: 100%;
   overflow: hidden;
 }
@@ -152,7 +295,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding-top: 1.5em;
-  height: 80%;
+  height: 75%;
   overflow-y: scroll;
   /* width */
   /* Track */

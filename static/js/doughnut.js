@@ -83,7 +83,7 @@ const genderConfig = {
     labels: ["Male", "Female"],
     datasets: [
       {
-        data: [30, 70],
+        data: [80, 70],
         borderColor: "rgba(0,0,0,0)",
         backgroundColor: ["rgba(95, 209, 249, 1)", "#f759ab"],
         hoverBackgroundColor: ["rgba(95, 209, 249, 1)", "#f759ab"]

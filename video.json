@@ -1,0 +1,102 @@
+[
+  {
+    "img": "airpod.jpg",
+    "video": "airpod.mp4",
+    "name": "airpod",
+    "title": "Apple Airpods",
+    "brand": "apple",
+    "gender": "female",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "applewatch.jpg",
+    "video": "applewatch.mp4",
+    "name": "applewatch",
+    "title": "Apple Watch",
+    "brand": "apple",
+    "gender": "male",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "iphone11.jpg",
+    "video": "iphone11.mp4",
+    "name": "iphone11",
+    "title": "Apple Iphone 11",
+    "brand": "apple",
+    "gender": "female",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "macbook.jpg",
+    "video": "macbook.mp4",
+    "name": "macbook",
+    "title": "Apple Macbook",
+    "brand": "apple",
+    "gender": "male",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "oculus.png",
+    "video": "oculus.mp4",
+    "name": "oculus",
+    "title": "Facebook Oculus",
+    "brand": "facebook",
+    "gender": "female",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "horizon.jpeg",
+    "video": "horizon.mp4",
+    "name": "horizon",
+    "title": "Facebook Horizon",
+    "brand": "facebook",
+    "gender": "female",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "workplace.png",
+    "video": "workplace.mp4",
+    "name": "workplace",
+    "title": "Facebook Workplace",
+    "brand": "facebook",
+    "gender": "male",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "chromecast.jpg",
+    "video": "chromecast.mp4",
+    "name": "chromecast",
+    "title": "Google Chromecast",
+    "brand": "google",
+    "gender": "female",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "googlehome.jpg",
+    "video": "googlehome.mp4",
+    "name": "googlehome",
+    "title": "Google Home",
+    "brand": "google",
+    "gender": "male",
+    "minAge": 20,
+    "maxAge": 50
+  },
+  {
+    "img": "pixel3.png",
+    "video": "pixel3.mp4",
+    "name": "pixel3",
+    "title": "Google Pixel 3",
+    "brand": "google",
+    "gender": "male",
+    "minAge": 20,
+    "maxAge": 50
+  }
+]
