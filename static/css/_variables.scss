@@ -1,0 +1,53 @@
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$monitor-width: 1680px;
+$primary-color: rgba(85, 88, 218, 1);
+$secondary-color: rgba(95, 209, 249, 1);
+$white-color: #fafafa;
+
+// base color defs
+$color-primary: #00bceb;
+$color-secondary: #1e4471;
+$color-white: #fafafa;
+$color-orange: #fbab18;
+$color-red: #e2231a;
+$color-shade-amount: 10%;
+$color-trans-amount: 0.5;
+
+// color variable map
+$colors: (
+  light: #fafafa,
+  dark: #333,
+  text: #fff,
+  background: #333,
+  primary: (
+    base: $color-primary,
+    light: lighten($color-primary, $color-shade-amount),
+    dark: darken($color-primary, $color-shade-amount),
+    trans: transparentize($color-primary, $color-trans-amount)
+  ),
+  secondary: (
+    base: $color-secondary,
+    light: lighten($color-secondary, $color-shade-amount),
+    dark: darken($color-secondary, $color-shade-amount),
+    trans: transparentize($color-secondary, $color-trans-amount)
+  ),
+  white: (
+    base: $color-white,
+    light: lighten($color-white, $color-shade-amount),
+    dark: darken($color-white, $color-shade-amount),
+    trans: transparentize($color-white, $color-trans-amount)
+  ),
+  orange: (
+    base: $color-orange,
+    light: lighten($color-orange, $color-shade-amount),
+    dark: darken($color-orange, $color-shade-amount),
+    trans: transparentize($color-orange, $color-trans-amount)
+  ),
+  red: (
+    base: $color-red,
+    light: lighten($color-red, $color-shade-amount),
+    dark: darken($color-red, $color-shade-amount),
+    trans: transparentize($color-red, $color-trans-amount)
+  )
+);

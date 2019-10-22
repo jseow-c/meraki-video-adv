@@ -11,7 +11,11 @@ exports.startServer = () => {
   // Socket.IO Server
   function onConnection(socket) {
     console.log("connected");
+    socket.on("offline_nextVideo", () =>
+      socket.broadcast.emit("offline_nextVideo")
+    );
     socket.on("nextVideo", () => socket.broadcast.emit("nextVideo"));
+    socket.on("suddenTrigger", () => socket.broadcast.emit("suddenTrigger"));
   }
 
   io.on("connection", onConnection);

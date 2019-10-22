@@ -1,0 +1,28 @@
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) and (max-width: #{$monitor-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin monitor {
+  @media (min-width: #{$monitor-width}) {
+    @content;
+  }
+}
+
+// retrieve color from $colors map ie. `color(base, primary)`
+@function color($color-name, $color-variant: null) {
+  // color variant is optional
+  @if ($color-variant != null) {
+    // map inception
+    @return map-get(map-get($colors, $color-name), $color-variant);
+  } @else {
+    @return map-get($colors, $color-name);
+  }
+}

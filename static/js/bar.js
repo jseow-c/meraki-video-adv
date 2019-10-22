@@ -155,19 +155,7 @@ var myChart = new Chart(ctx, {
     datasets: [
       {
         label: "No. of people",
-        data: [
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          randomScalingFactor(),
-          0
-        ],
+        data: [0, 0, 0, 10, 20, 30, 10, 5, 3, 0, 0],
         backgroundColor: "rgba(255,255,255, 0.7)",
         borderColor: "rgba(255,255,255,0.1)",
         borderWidth: 1,
@@ -177,10 +165,12 @@ var myChart = new Chart(ctx, {
     ]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
     scales: {
       xAxes: [
         {
-          barThickness: 15,
+          barThickness: 19,
           display: false,
           label: {
             display: false
@@ -210,9 +200,10 @@ var myChart = new Chart(ctx, {
     },
     title: {
       display: true,
-      text: "Age Demographic",
+      text: "Age Demographic - 30-35",
       fontFamily: "Source Sans Pro",
-      fontColor: "#fafafa"
+      fontColor: "#fafafa",
+      fontSize: 17
     },
     legend: {
       display: false
@@ -221,3 +212,12 @@ var myChart = new Chart(ctx, {
     barRoundness: 0.5
   }
 });
+
+function updateBarThickness() {
+  const width = window.innerWidth;
+
+  myChart.options.scales.xAxes[0].barThickness = width > 1600 ? 24 : 19;
+  myChart.update();
+}
+
+window.onresize = updateBarThickness;

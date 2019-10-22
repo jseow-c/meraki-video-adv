@@ -54,21 +54,24 @@ const moodConfig = {
     ]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutoutPercentage: 50,
     legend: {
       display: true,
       labels: {
         fontFamily: "Source Sans Pro",
         fontColor: "#fafafa",
-        fontSize: 10,
-        boxWidth: 20
+        fontSize: 16,
+        boxWidth: 15
       }
     },
     elements: {
       center: {
-        text: "60%",
+        text: "Positive",
         color: "#fafafa", // Default is #000000
         fontStyle: "Source Sans Pro", // Default is Arial
-        sidePadding: 40 // Default is 20 (as a percentage)
+        sidePadding: 20 // Default is 20 (as a percentage)
       }
     }
   }
@@ -83,7 +86,7 @@ const genderConfig = {
     labels: ["Male", "Female"],
     datasets: [
       {
-        data: [80, 70],
+        data: [70, 80],
         borderColor: "rgba(0,0,0,0)",
         backgroundColor: ["rgba(95, 209, 249, 1)", "#f759ab"],
         hoverBackgroundColor: ["rgba(95, 209, 249, 1)", "#f759ab"]
@@ -91,21 +94,24 @@ const genderConfig = {
     ]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
+    cutoutPercentage: 50,
     legend: {
       display: true,
       labels: {
         fontFamily: "Source Sans Pro",
         fontColor: "#fafafa",
-        fontSize: 10,
-        boxWidth: 20
+        fontSize: 16,
+        boxWidth: 15
       }
     },
     elements: {
       center: {
-        text: "70%",
+        text: "Female",
         color: "#fafafa", // Default is #000000
         fontStyle: "Source Sans Pro", // Default is Arial
-        sidePadding: 40 // Default is 20 (as a percentage)
+        sidePadding: 30 // Default is 20 (as a percentage)
       }
     }
   }

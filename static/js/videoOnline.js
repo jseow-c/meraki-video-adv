@@ -4,7 +4,7 @@ let videos = [];
 // connect to socket.io
 const socket = io(`${server}:${socketPort}`);
 
-socket.on("offline_nextVideo", async () => {
+socket.on("nextVideo", async () => {
   videos = await getVideos();
   console.log(videos);
   // clear list
@@ -17,18 +17,19 @@ socket.on("offline_nextVideo", async () => {
 
 // state all videos
 async function getVideos() {
-  const response = await axios.get(`${server}:${port}/offline/list`);
+  const response = await axios.get(`${server}:${port}/list`);
   return response.data;
 }
 
 // change the sequence
 async function changeVideos(videos, cb = null) {
-  await axios.post(`${server}:${port}/offline/list/change`, videos);
+  await axios.post(`${server}:${port}/list/change`, videos);
   if (cb) cb();
 }
 
 // initialize video with animation
 const allVideoShow = async videos => {
+  console.log(videos);
   for (let video of videos) {
     const videoParentElement = document.getElementById("video-content");
     const childTitleElement = document.createElement("div");
@@ -36,7 +37,7 @@ const allVideoShow = async videos => {
     childTitleElement.innerHTML = video.title;
     videoParentElement.appendChild(childTitleElement);
     const childVideoElement = document.createElement("img");
-    childVideoElement.src = `img/${video.img}`;
+    childVideoElement.src = video.img;
     childVideoElement.alt = video.name;
     childVideoElement.className = "v-img slide-fade";
     videoParentElement.appendChild(childVideoElement);
@@ -72,7 +73,6 @@ function ruleCheck() {
   // ];
   sliders.sort((a, b) => b.amt - a.amt);
   const newSliders = sliders.map(a => a.tag);
-  console.log(sliders, newSliders, originalSlider);
   if (JSON.stringify(originalSlider) !== JSON.stringify(newSliders)) {
     // they are different
     originalSlider = newSliders;
@@ -83,16 +83,7 @@ function ruleCheck() {
       if (b.name === firstElement) return 1;
       else if (bIndex < aIndex) return 1;
       else return -1;
-      // if (b.name === firstElement) return 1;
-      // else if (a.brand === sliders[0].tag) return -1;
-      // else if (b.brand === sliders[0].tag) return 1;
-      // else if (a.brand === sliders[1].tag && b.brand === sliders[2].tag)
-      //   return -1;
-      // else if (b.brand === sliders[1].tag && a.brand === sliders[2].tag)
-      //   return 1;
-      // else return 0;
     });
-    console.log(firstElement, videos);
     changeVideos(videos);
     // // clear list
     // const videoParentElement = document.getElementById("video-content");
@@ -104,5 +95,26 @@ function ruleCheck() {
 }
 
 function recognitionCheck(mood, gender, age) {
-  console.log(mood, gender, age);
+  const newSliders = originalSlider.slice();
+  // gender check
+  if (gender === "Male") {
+    newSliders.splice(newSliders.findIndex(e => e === "hugo"), 1);
+    newSliders.unshift("hugo");
+  } else {
+    newSliders.splice(newSliders.findIndex(e => e === "chloe"), 1);
+    newSliders.unshift("chloe");
+  }
+  if (JSON.stringify(originalSlider) !== JSON.stringify(newSliders)) {
+    // they are different
+    originalSlider = newSliders;
+    const firstElement = videos[0].name;
+    videos.sort((a, b) => {
+      const aIndex = newSliders.findIndex(e => e === a.brand);
+      const bIndex = newSliders.findIndex(e => e === b.brand);
+      if (b.name === firstElement) return 1;
+      else if (bIndex < aIndex) return 1;
+      else return -1;
+    });
+    changeVideos(videos);
+  }
 }

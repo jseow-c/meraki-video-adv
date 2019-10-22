@@ -9,18 +9,32 @@ const socket = client.connect(`${process.env.HOST}:${process.env.SOCKET_PORT}`);
 
 // load variables
 const videoFunction = require("./model");
-let videoSequence, videoNum;
+let offlineSequence, offlineNum, onlineSequence, onlineNum;
 videoFunction().then(data => {
-  videoSequence = data.videoSequence;
-  videoNum = data.videoNum;
+  offlineSequence = data.offlineSequence;
+  offlineNum = data.offlineNum;
+  onlineSequence = data.onlineSequence;
+  onlineNum = data.onlineNum;
 });
 
 exports.index = (req, res) => {
+  res.sendFile(path.join(__dirname + "/html/youtube-index.html"));
+};
+
+exports.index_offline = (req, res) => {
   res.sendFile(path.join(__dirname + "/html/index.html"));
 };
 
 exports.dashboard = (req, res) => {
+  res.sendFile(path.join(__dirname + "/html/youtube-dashboard.html"));
+};
+
+exports.dashboard_offline = (req, res) => {
   res.sendFile(path.join(__dirname + "/html/dashboard.html"));
+};
+
+exports.test = (req, res) => {
+  res.sendFile(path.join(__dirname + "/html/test.html"));
 };
 
 exports.loadVideo = (req, res) => {
@@ -56,26 +70,52 @@ exports.loadVideo = (req, res) => {
   }
 };
 
-exports.nextVideo = (req, res) => {
-  // increment the videoNum
-  if (videoNum === videoSequence.length - 1) {
-    videoNum = -1;
+exports.offline_nextVideo = (req, res) => {
+  // increment the offlineNum
+  if (offlineNum === offlineSequence.length - 1) {
+    offlineNum = -1;
   }
-  videoNum += 1;
+  offlineNum += 1;
+  socket.emit("offline_nextVideo");
+
+  res.send(offlineSequence[offlineNum].video);
+};
+
+exports.offline_listVideos = (req, res) => {
+  const currentList = offlineSequence.slice(offlineNum);
+  currentList.push(...offlineSequence.slice(0, offlineNum));
+  res.send(currentList);
+};
+
+exports.offline_changeVideos = (req, res) => {
+  offlineSequence = req.body;
+  offlineNum = 0;
+  socket.emit("offline_nextVideo");
+  res.send("success");
+};
+
+// online
+
+exports.nextVideo = (req, res) => {
+  // increment the offlineNum
+  if (onlineNum === onlineSequence.length - 1) {
+    onlineNum = -1;
+  }
+  onlineNum += 1;
   socket.emit("nextVideo");
 
-  res.send(videoSequence[videoNum].video);
+  res.send(onlineSequence[onlineNum].video);
 };
 
 exports.listVideos = (req, res) => {
-  const currentList = videoSequence.slice(videoNum);
-  currentList.push(...videoSequence.slice(0, videoNum));
+  const currentList = onlineSequence.slice(onlineNum);
+  currentList.push(...onlineSequence.slice(0, onlineNum));
   res.send(currentList);
 };
 
 exports.changeVideos = (req, res) => {
-  videoSequence = req.body;
-  videoNum = 0;
+  onlineSequence = req.body;
+  onlineNum = 0;
   socket.emit("nextVideo");
   res.send("success");
 };

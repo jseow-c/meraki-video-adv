@@ -2,13 +2,12 @@
 const video = document.getElementById("videoPlayer");
 const source = document.createElement("source");
 
+const listOfVideo = [];
+
 // videoHandler
 async function videoHandler(e, cb = null) {
-  const response = await axios.get(`${server}:${port}/offline/next`);
-  source.setAttribute(
-    "src",
-    `${server}:${port}/offline/video/${response.data}`
-  );
+  const response = await axios.get(`${server}:${port}/next`);
+  source.setAttribute("src", `${server}:${port}/video/${response.data}`);
 
   video.load();
   if (cb) cb();

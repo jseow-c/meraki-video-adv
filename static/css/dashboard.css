@@ -1,55 +1,44 @@
+html,
 body {
   margin: 0;
+  padding: 0;
   width: 100vw;
   height: 100vh;
   background-color: #fafafa;
+  overflow: hidden;
   font-family: "Source Sans Pro", sans-serif;
 }
 
-@media (min-width: 1680px) {
-  body {
-    padding: 4em;
-    width: calc(100vw - 8em);
-    height: calc(100vh - 8em);
-  }
-}
-
 .container {
-  width: calc(100% - 10em);
-  height: calc(100% - 4em);
-  padding: 2em 5em;
+  width: 100%;
+  height: 100%;
 }
 
 @media (min-width: 1024px) and (max-width: 1679px) {
   .container {
-    width: calc(100% - 16em);
-    height: calc(100% - 4em);
-    padding: 2em 8em;
+    width: 100%;
+    height: 100%;
   }
 }
 
 @media (min-width: 1680px) {
   .container {
-    width: calc(100% - 24em);
-    height: calc(100% - 4em);
-    padding: 2em 12em;
+    width: 100%;
+    height: 100%;
   }
 }
 
 .container .card {
   width: 100%;
   height: 100%;
-  -webkit-filter: drop-shadow(0.75em 1em 0.4em rgba(85, 88, 218, 0.2));
-          filter: drop-shadow(0.75em 1em 0.4em rgba(85, 88, 218, 0.2));
   border: none;
-  border-radius: 5em;
   background-image: radial-gradient(circle farthest-corner at 12.3% 19.3%, #5558da 0%, #5fd1f9 100.2%);
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: 2% 8% 34% auto 2%;
       grid-template-rows: 2% 8% 34% auto 2%;
-  -ms-grid-columns: 70% auto;
-      grid-template-columns: 70% auto;
+  -ms-grid-columns: auto 420px;
+      grid-template-columns: auto 420px;
   row-gap: 2em;
       grid-template-areas: ". video" "title video" "main video" "recognition video" ". .";
 }
@@ -60,6 +49,10 @@ body {
 
 .container .card.image-only #main {
   display: none;
+}
+
+.container .card.image-only #recognition {
+  height: 100%;
 }
 
 .container .card.image-only #recognition .content {
@@ -79,8 +72,8 @@ body {
 }
 
 .container .card.image-only #recognition .content .flex-center .img {
-  width: 60%;
-  height: 324px;
+  width: 450px;
+  height: 280px;
   margin: auto;
   margin-bottom: 2em;
   display: block;
@@ -194,6 +187,13 @@ body {
   padding: 0 5em;
 }
 
+@media (min-width: 1680px) {
+  .container .card #main {
+    width: calc(100% - 20em);
+    padding: 0 10em;
+  }
+}
+
 .container .card #main .slider-icon {
   display: inline-block;
   font-size: 2.25em;
@@ -203,12 +203,15 @@ body {
 }
 
 .container .card #main .slider-icon .slider-text {
-  font-size: 0.35em;
+  font-size: 0.4em;
 }
 
 .container .card #main .content {
-  width: calc(100% - 5em);
-  padding-left: 5em;
+  width: calc(100% - 1em);
+  padding-left: 1em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
 }
 
 .container .card #recognition {
@@ -218,6 +221,13 @@ body {
   grid-area: recognition;
   width: calc(100% - 10em);
   padding: 0 5em;
+}
+
+@media (min-width: 1680px) {
+  .container .card #recognition {
+    width: calc(100% - 20em);
+    padding: 0 10em;
+  }
 }
 
 .container .card #recognition .content {
@@ -236,8 +246,8 @@ body {
 }
 
 .container .card #recognition .content .flex-center .img {
-  width: 200px;
-  height: 135px;
+  width: 300px;
+  height: 205px;
   background-color: #fafafa;
   -webkit-filter: drop-shadow(0.4em 0.75em 0.2em rgba(85, 88, 85, 0.2));
           filter: drop-shadow(0.4em 0.75em 0.2em rgba(85, 88, 85, 0.2));
@@ -267,8 +277,6 @@ body {
   -ms-grid-column: 2;
   grid-area: video;
   background-color: rgba(255, 255, 255, 0.075);
-  border-top-right-radius: 5em;
-  border-bottom-right-radius: 5em;
   padding-top: 4em;
   height: 100%;
   overflow: hidden;
@@ -295,7 +303,7 @@ body {
       -ms-flex-align: center;
           align-items: center;
   padding-top: 1.5em;
-  height: 75%;
+  height: 80%;
   overflow-y: scroll;
   /* width */
   /* Track */
@@ -351,7 +359,7 @@ body {
 }
 
 .container .card #video .content .v-title {
-  font-size: 0.95em;
+  font-size: 1.15em;
   color: #fafafa;
   font-weight: 600;
   margin-bottom: 0.15em;
@@ -374,5 +382,62 @@ body {
 
 .container .card #video .content .v-title.show:first-of-type::before {
   content: "Now playing: ";
+}
+
+#moodChart {
+  width: 220px !important;
+  height: 205px !important;
+}
+
+@media (min-width: 1024px) and (max-width: 1679px) {
+  #moodChart {
+    width: 220px !important;
+    height: 205px !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  #moodChart {
+    width: 300px !important;
+    height: 250px !important;
+  }
+}
+
+#genderChart {
+  width: 140px !important;
+  height: 205px !important;
+}
+
+@media (min-width: 1024px) and (max-width: 1679px) {
+  #genderChart {
+    width: 140px !important;
+    height: 205px !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  #genderChart {
+    width: 220px !important;
+    height: 250px !important;
+  }
+}
+
+#myChart {
+  width: 220px !important;
+  height: 205px !important;
+}
+
+@media (min-width: 1024px) and (max-width: 1679px) {
+  #myChart {
+    width: 220px !important;
+    height: 205px !important;
+  }
+}
+
+@media (min-width: 1680px) {
+  #myChart {
+    width: 280px !important;
+    height: 250px !important;
+  }
 }
 /*# sourceMappingURL=dashboard.css.map */

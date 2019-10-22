@@ -1,0 +1,44 @@
+[
+  {
+    "img": "https://logosvector.net/wp-content/uploads/2012/02/hugo-boss-logo.jpg",
+    "video": "zjDCipQgQH4",
+    "name": "hugo",
+    "title": "Hugo Boss",
+    "brand": "hugo"
+  },
+  {
+    "img": "https://cnet2.cbsistatic.com/img/7Y7qBRzQ24CgsZ0TyHTkLNQV3GA=/1092x0/2019/09/16/477988d1-a8f1-4760-8d90-0a3db5aeeda8/01-iphone-11-pro-and-iphone-11-max.jpg",
+    "video": "qSJL6uAZ3LA",
+    "name": "iphone11",
+    "title": "Apple Iphone 11",
+    "brand": "apple"
+  },
+  {
+    "img": "https://cdn.fragrancenet.com/images/photos/300x300/157352.jpg",
+    "video": "RBEpRIR-bx8",
+    "name": "chloe",
+    "title": "Chloe Perfume",
+    "brand": "chloe"
+  },
+  {
+    "img": "https://www.visitsingapore.com/see-do-singapore/recreation-leisure/resorts/marina-bay-sands/_jcr_content/par-carousel/carousel_detailpage/carousel/item_1.thumbnail.carousel-img.740.416.jpg",
+    "video": "_IZIkiuYAy0",
+    "name": "mbs",
+    "title": "Marina Bay Sands",
+    "brand": "mbs"
+  },
+  {
+    "img": "https://www.singaporeair.com/saar5/images/navigation/ppsclub-krisflyer/earn-miles/earn-when-you-fly.jpg",
+    "video": "6ZOWrb39xLo",
+    "name": "sia",
+    "title": "Singapore Air",
+    "brand": "sia"
+  },
+  {
+    "img": "https://media-cdn.tripadvisor.com/media/photo-s/02/10/44/16/sushi-tei.jpg",
+    "video": "ACqsTe8u6lc",
+    "name": "sushi",
+    "title": "Sushi Teh",
+    "brand": "sushi"
+  }
+]

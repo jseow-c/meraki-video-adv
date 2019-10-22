@@ -1,3 +1,6 @@
+// get largestIndex
+const getLargestIndex = (iMax, x, i, arr) => (x > arr[iMax] ? i : iMax);
+
 // state all videos
 async function snapMeraki(url = null) {
   let targetUrl;
@@ -7,11 +10,11 @@ async function snapMeraki(url = null) {
     merakiElement.src = url;
     targetUrl = url;
   } else {
-    const response = await axios.post(`${host}:${port}/snap`);
+    const response = await axios.post(`${server}:${port}/snap`);
     merakiElement.src = response.data;
     targetUrl = response.data;
   }
-  const awsResponse = await axios.post(`${host}:${port}/image/aws`, {
+  const awsResponse = await axios.post(`${server}:${port}/image/aws`, {
     url: targetUrl
   });
   const total = awsResponse.data.length;
@@ -39,17 +42,46 @@ async function snapMeraki(url = null) {
     else if (item.Age > 50 && item.Age <= 55) age[9] += 1;
     else age[10] += 1;
   });
-  console.log(mood, gender, age);
+
   moodChart.data.datasets[0].data = mood;
-  const centerMood = ((mood[0] * 100) / total).toFixed(0);
-  moodChart.options.elements.center.text = `${centerMood || "No Data"}`;
+  // Highest number in mood
+  const idHighMood = mood.reduce(getLargestIndex, 0);
+  let moodChosen = "Positive";
+  if (idHighMood === 0) moodChosen = "Positive";
+  else if (idHighMood === 1) moodChosen = "Neutral";
+  else moodChosen = "Negative";
+  moodChart.options.elements.center.text = moodChosen;
   moodChart.update();
+
+  // set genderChart
   genderChart.data.datasets[0].data = gender;
-  const centerGender = ((gender[1] * 100) / total).toFixed(0);
-  genderChart.options.elements.center.text = `${centerGender || "No Data"}`;
+  // Highest number in gender
+  const idHighGender = gender.reduce(getLargestIndex, 0);
+  let genderChosen = "Male";
+  if (idHighGender !== 0) genderChosen = "Female";
+  genderChart.options.elements.center.text = genderChosen;
   genderChart.update();
+
+  // set ageChart
   myChart.data.datasets[0].data = age;
+  // Highest number in age
+  const idHighAge = age.reduce(getLargestIndex, 0);
+  let ageChosen = "<10";
+  if (idHighAge === 0) ageChosen = "<10";
+  else if (idHighAge === 1) ageChosen = "10-15";
+  else if (idHighAge === 2) ageChosen = "15-20";
+  else if (idHighAge === 3) ageChosen = "20-25";
+  else if (idHighAge === 4) ageChosen = "25-30";
+  else if (idHighAge === 5) ageChosen = "30-35";
+  else if (idHighAge === 6) ageChosen = "35-40";
+  else if (idHighAge === 7) ageChosen = "40-45";
+  else if (idHighAge === 8) ageChosen = "45-50";
+  else if (idHighAge === 9) ageChosen = "50-55";
+  else ageChosen = ">55";
+  myChart.options.title.text = `Age Demographic - ${ageChosen}`;
   myChart.update();
+
+  recognitionCheck(moodChosen, genderChosen, ageChosen);
 }
 
 function toggleDashboard() {
