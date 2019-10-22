@@ -1,6 +1,12 @@
 // get largestIndex
 const getLargestIndex = (iMax, x, i, arr) => (x > arr[iMax] ? i : iMax);
 
+const getCount = (arr, search) => {
+  return arr.reduce(function(n, val) {
+    return n + (val === search);
+  }, 0);
+};
+
 // state all videos
 async function snapMeraki(url = null) {
   let targetUrl;
@@ -55,6 +61,7 @@ async function snapMeraki(url = null) {
 
   // set genderChart
   genderChart.data.datasets[0].data = gender;
+  console.log(gender);
   // Highest number in gender
   const idHighGender = gender.reduce(getLargestIndex, 0);
   let genderChosen = "Male";
@@ -81,7 +88,7 @@ async function snapMeraki(url = null) {
   myChart.options.title.text = `Age Demographic - ${ageChosen}`;
   myChart.update();
 
-  recognitionCheck(moodChosen, genderChosen, ageChosen);
+  recognitionCheck(moodChosen, genderChosen, ageChosen, gender[0], gender[1]);
 }
 
 function toggleDashboard() {

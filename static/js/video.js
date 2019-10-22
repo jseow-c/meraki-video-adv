@@ -103,6 +103,6 @@ function ruleCheck() {
   }
 }
 
-function recognitionCheck(mood, gender, age) {
+function recognitionCheck(mood, gender, age, noMale, noFemale) {
   console.log(mood, gender, age);
 }

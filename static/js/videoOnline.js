@@ -94,10 +94,17 @@ function ruleCheck() {
   }
 }
 
-function recognitionCheck(mood, gender, age) {
+function recognitionCheck(mood, gender, age, noMale, noFemale) {
   const newSliders = originalSlider.slice();
   // gender check
-  if (gender === "Male") {
+  console.log(noMale, noFemale);
+  if (noMale + noFemale === 0) {
+    newSliders.splice(newSliders.findIndex(e => e === "mbs"), 1);
+    newSliders.unshift("mbs");
+  } else if (noMale === noFemale) {
+    newSliders.splice(newSliders.findIndex(e => e === "sia"), 1);
+    newSliders.unshift("sia");
+  } else if (noMale > noFemale) {
     newSliders.splice(newSliders.findIndex(e => e === "hugo"), 1);
     newSliders.unshift("hugo");
   } else {
