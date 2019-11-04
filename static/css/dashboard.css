@@ -73,9 +73,9 @@ body {
 
 .container .card.image-only #recognition .content .flex-center .img {
   width: 450px;
-  height: 280px;
+  height: 340px;
   margin: auto;
-  margin-bottom: 2em;
+  margin-bottom: 0.5em;
   display: block;
   background-color: #fafafa;
   -webkit-filter: drop-shadow(0.4em 0.75em 0.2em rgba(85, 88, 85, 0.2));
