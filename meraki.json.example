@@ -1,0 +1,5 @@
+{
+  "apiKey": "meraki-api-key",
+  "networkID": "meraki-network-id",
+  "camSerial": "meraki-camera-serial"
+}

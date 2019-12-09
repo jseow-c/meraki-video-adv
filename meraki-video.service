@@ -1,0 +1,12 @@
+[Unit]
+Description=Meraki Video Player Application
+
+[Service]
+ExecStart=/path/to/folder/node /path/to/meraki-demo/folder/server.js
+ExecReload=/path/to/folder/node /path/to/meraki-demo/folder/server.js
+WorkingDirectory=/path/to/meraki-demo/folder
+Restart=on-failure
+RestartSec=30s
+
+[Install]
+WantedBy=multi-user.target
