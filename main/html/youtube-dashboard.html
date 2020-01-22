@@ -87,6 +87,15 @@
           <div class="title">
             <span class="title-head"> Image </span>
             Recognition
+            <label class="title-btn"> Upload
+              <input
+                type="file"
+                id="imageUpload"
+                style="display:none;"
+                accept=".png, .jpg, .jpeg"
+                onchange="uploadMeraki()"
+              />
+            </label>
             <button class="title-btn" onclick="snapMeraki(`${server}:${port}/img/small.jpg`)">Few</button>
             <button class="title-btn" onclick="snapMeraki(`${server}:${port}/img/crowd.jpg`)">Many</button>
             <button class="title-btn" onclick="snapMeraki(`${server}:${port}/img/herman.jpeg`)">Herman</button>

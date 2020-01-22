@@ -126,6 +126,12 @@ exports.snapPhoto = async (req, res) => {
 };
 
 exports.photoAWS = async (req, res) => {
-  const photoUrl = await misc.awsCheck(req.body.url);
-  res.send(photoUrl);
+  const { url, file } = req.body;
+  let returnData;
+  if (url) {
+    returnData = await misc.awsCheck(url);
+  } else if (file) {
+    returnData = await misc.awsUploadCheck(file);
+  }
+  res.send(returnData);
 };

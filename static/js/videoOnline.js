@@ -6,7 +6,6 @@ const socket = io(`${server}:${socketPort}`);
 
 socket.on("nextVideo", async () => {
   videos = await getVideos();
-  console.log(videos);
   // clear list
   const videoParentElement = document.getElementById("video-content");
   while (videoParentElement.firstChild) {
@@ -29,7 +28,6 @@ async function changeVideos(videos, cb = null) {
 
 // initialize video with animation
 const allVideoShow = async videos => {
-  console.log(videos);
   for (let video of videos) {
     const videoParentElement = document.getElementById("video-content");
     const childTitleElement = document.createElement("div");
@@ -97,18 +95,29 @@ function ruleCheck() {
 function recognitionCheck(mood, gender, age, noMale, noFemale) {
   const newSliders = originalSlider.slice();
   // gender check
-  console.log(noMale, noFemale);
   if (noMale + noFemale === 0) {
-    newSliders.splice(newSliders.findIndex(e => e === "mbs"), 1);
+    newSliders.splice(
+      newSliders.findIndex(e => e === "mbs"),
+      1
+    );
     newSliders.unshift("mbs");
   } else if (noMale === noFemale) {
-    newSliders.splice(newSliders.findIndex(e => e === "sia"), 1);
+    newSliders.splice(
+      newSliders.findIndex(e => e === "sia"),
+      1
+    );
     newSliders.unshift("sia");
   } else if (noMale > noFemale) {
-    newSliders.splice(newSliders.findIndex(e => e === "hugo"), 1);
+    newSliders.splice(
+      newSliders.findIndex(e => e === "hugo"),
+      1
+    );
     newSliders.unshift("hugo");
   } else {
-    newSliders.splice(newSliders.findIndex(e => e === "chloe"), 1);
+    newSliders.splice(
+      newSliders.findIndex(e => e === "chloe"),
+      1
+    );
     newSliders.unshift("chloe");
   }
   if (JSON.stringify(originalSlider) !== JSON.stringify(newSliders)) {

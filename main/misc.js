@@ -87,3 +87,12 @@ exports.awsCheck = async url => {
   const data = await DetectFaces(buffer);
   return cleanFaceDetails(data);
 };
+
+exports.awsUploadCheck = async image => {
+  const buffer = new Buffer.from(
+    image.replace(/^data:image\/\w+;base64,/, ""),
+    "base64"
+  );
+  const data = await DetectFaces(buffer);
+  return cleanFaceDetails(data);
+};
