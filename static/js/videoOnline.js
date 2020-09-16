@@ -103,22 +103,22 @@ function recognitionCheck(mood, gender, age, noMale, noFemale) {
     newSliders.unshift("mbs");
   } else if (noMale === noFemale) {
     newSliders.splice(
-      newSliders.findIndex(e => e === "sia"),
+      newSliders.findIndex(e => e === "memo"),
       1
     );
-    newSliders.unshift("sia");
+    newSliders.unshift("memo");
   } else if (noMale > noFemale) {
     newSliders.splice(
-      newSliders.findIndex(e => e === "hugo"),
+      newSliders.findIndex(e => e === "apple"),
       1
     );
-    newSliders.unshift("hugo");
+    newSliders.unshift("apple");
   } else {
     newSliders.splice(
-      newSliders.findIndex(e => e === "chloe"),
+      newSliders.findIndex(e => e === "reece"),
       1
     );
-    newSliders.unshift("chloe");
+    newSliders.unshift("reece");
   }
   if (JSON.stringify(originalSlider) !== JSON.stringify(newSliders)) {
     // they are different

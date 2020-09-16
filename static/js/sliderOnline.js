@@ -10,12 +10,12 @@ const xmlns = "http://www.w3.org/2000/svg",
 
 const balloonTemplate = document.getElementById("balloon-slider");
 const holder = document.getElementById("slider");
-let originalSlider = ["apple", "chloe", "hugo", "sia", "mbs", "sushi"];
+let originalSlider = ["sonos", "reece", "apple", "memo", "mbs", "sushi"];
 const sliders = [
-  { name: "Apple", tag: "apple", amt: 0.8 },
-  { name: "Chloe", tag: "chloe", amt: 0.7 },
-  { name: "Hugo Boss", tag: "hugo", amt: 0.6 },
-  { name: "SIA", tag: "sia", amt: 0.5 },
+  { name: "Sonos", tag: "sonos", amt: 0.8 },
+  { name: "Reece", tag: "reece", amt: 0.7 },
+  { name: "Apple", tag: "apple", amt: 0.6 },
+  { name: "Memo", tag: "memo", amt: 0.5 },
   { name: "MBS", tag: "mbs", amt: 0.4 },
   { name: "Sushi Teh", tag: "sushi", amt: 0.1 }
 ];

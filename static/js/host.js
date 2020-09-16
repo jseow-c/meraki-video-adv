@@ -1,3 +1,3 @@
-const server = "http://localhost";
-const port = "3000";
-const socketPort = "8118";
+const server = "http://10.68.46.144";
+const port = "3100";
+const socketPort = "3101";
