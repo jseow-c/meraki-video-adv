@@ -1,72 +1,45 @@
-[
-  {
-    "img": "airpod.jpg",
-    "video": "airpod.mp4",
-    "name": "airpod",
-    "title": "Apple Airpods",
-    "brand": "apple"
+{
+  "1": {
+    "index": 1,
+    "img": "https://photos5.appleinsider.com/gallery/36913-69009-200729-iPhone12-xl.jpg",
+    "video": "-HwHnqARrgg",
+    "title": "Apple Iphone 12",
+    "icon": "fab fa-apple"
   },
-  {
-    "img": "applewatch.jpg",
-    "video": "applewatch.mp4",
-    "name": "applewatch",
-    "title": "Apple Watch",
-    "brand": "apple"
+  "2": {
+    "index": 2,
+    "img": "https://135525-391882-2-raikfcquaxqncofqfm.stackpathdns.com/wp-content/uploads/2016/11/pizza-hut-delivery.jpg",
+    "video": "5Tv-CRDpWWM",
+    "title": "Pizza Hut Delivery",
+    "icon": "fas fa-truck"
   },
-  {
-    "img": "iphone11.jpg",
-    "video": "iphone11.mp4",
-    "name": "iphone11",
-    "title": "Apple Iphone 11",
-    "brand": "apple"
+  "3": {
+    "index": 3,
+    "img": "https://www.pizzahut.com.hk/corp/files/menu/SpecialMenu20210128/PH_Golden%20Seafood%20Pizza_Digital%20Poster_700x330pxH_0125_OP.jpg",
+    "video": "Y7Vn2f_eGv8",
+    "title": "Golden Seafood Pizza",
+    "icon": "fas fa-fish"
   },
-  {
-    "img": "macbook.jpg",
-    "video": "macbook.mp4",
-    "name": "macbook",
-    "title": "Apple Macbook",
-    "brand": "apple"
+  "4": {
+    "index": 4,
+    "img": "https://www.hkejetso.com/wp-content/uploads/2020/08/pizza-hut-buy-1-get-1-free-aug-31.png",
+    "video": "w9voLUZiU6Q",
+    "title": "Pizza Hut 1 For 1",
+    "icon": "fas fa-cart-plus"
   },
-  {
-    "img": "oculus.png",
-    "video": "oculus.mp4",
-    "name": "oculus",
-    "title": "Facebook Oculus",
-    "brand": "facebook"
+  "5": {
+    "index": 5,
+    "img": "https://i.ytimg.com/vi/s2bCiqr8ORU/sddefault.jpg",
+    "video": "s2bCiqr8ORU",
+    "title": "BroBot",
+    "icon": "fas fa-robot"
   },
-  {
-    "img": "horizon.jpeg",
-    "video": "horizon.mp4",
-    "name": "horizon",
-    "title": "Facebook Horizon",
-    "brand": "facebook"
-  },
-  {
-    "img": "workplace.png",
-    "video": "workplace.mp4",
-    "name": "workplace",
-    "title": "Facebook Workplace",
-    "brand": "facebook"
-  },
-  {
-    "img": "chromecast.jpg",
-    "video": "chromecast.mp4",
-    "name": "chromecast",
-    "title": "Google Chromecast",
-    "brand": "google"
-  },
-  {
-    "img": "googlehome.jpg",
-    "video": "googlehome.mp4",
-    "name": "googlehome",
-    "title": "Google Home",
-    "brand": "google"
-  },
-  {
-    "img": "pixel3.png",
-    "video": "pixel3.mp4",
-    "name": "pixel3",
-    "title": "Google Pixel 3",
-    "brand": "google"
+  "6": {
+    "index": 6,
+    "img": "https://images.samsung.com/sg/smartphones/galaxy-z-fold2/images/galaxy-z-fold2-share-image.jpg",
+    "video": "yqfqAz-6zMs",
+    "title": "Galaxy Fold 2",
+    "icon": "fas fa-mobile"
   }
-]
+}
+

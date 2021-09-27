@@ -3,6 +3,7 @@ const express = require("express");
 
 exports.startServer = () => {
   // load socket.io
+  console.log("server started");
   const ioApp = express();
   const http = require("http").Server(ioApp);
   const io = require("socket.io")(http);
@@ -11,14 +12,16 @@ exports.startServer = () => {
   // Socket.IO Server
   function onConnection(socket) {
     console.log("connected");
-    socket.on("offline_nextVideo", () =>
-      socket.broadcast.emit("offline_nextVideo")
-    );
-    socket.on("nextVideo", () => socket.broadcast.emit("nextVideo"));
+    socket.on("nextVideo", () => {
+      socket.broadcast.emit("nextVideo");
+    });
+    socket.on("updateVideos", () => {
+      socket.broadcast.emit("updateVideos");
+    });
     socket.on("suddenTrigger", () => socket.broadcast.emit("suddenTrigger"));
   }
 
   io.on("connection", onConnection);
   // Listening for IO Server
-  http.listen(port, () => console.log("listening on port " + port));
+  http.listen(port, () => console.log("Socket listening on port " + port));
 };

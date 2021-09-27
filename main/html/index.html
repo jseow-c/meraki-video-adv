@@ -8,9 +8,16 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
-    <video id="videoPlayer" playsinline autoplay muted controls></video>
-    <script src="js/host.js"></script>
+    <div id="player"></div>
+
+    <!-- Socket.IO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+
+    <!-- Axios -->
     <script src="js/axios.min.js"></script>
+
+    <!-- Custom -->
+    <script src="js/host.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>

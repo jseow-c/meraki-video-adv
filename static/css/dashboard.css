@@ -40,11 +40,11 @@ body {
   -ms-grid-columns: auto 420px;
       grid-template-columns: auto 420px;
   row-gap: 2em;
-      grid-template-areas: ". video" "title video" "main video" "recognition video" ". .";
+      grid-template-areas: ". video" "title video" "main video" "recognition video" ". .";
 }
 
 .container .card.image-only {
-      grid-template-areas: ". video" "title video" "recognition video" "recognition video" ". .";
+      grid-template-areas: ". video" "title video" "recognition video" "recognition video" ". .";
 }
 
 .container .card.image-only #main {
@@ -205,7 +205,7 @@ body {
   display: inline-block;
   font-size: 2.25em;
   color: #fafafa;
-  width: 65px;
+  width: 130px;
   text-align: center;
 }
 

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meraki Admin</title>
+  <script src="https://kit.fontawesome.com/12a98ab352.js" crossorigin="anonymous"></script>
+  <link
+    href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,600,700,900&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/admin.css" />
+
+  <!-- host variable -->
+  <script src="js/host.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="card rules-only" id="card">
+      <div id="title">Meraki Admin
+          <ul class="card-options">
+              <li>
+                <input type='radio' value='videos' name='dashboard' onclick="toggleDashboard()" id='radio1' />
+                <label for='radio1'>Videos</label>
+              </li>
+              <!-- <li>
+                <input type='radio' value='images' name='dashboard' onclick="toggleDashboard()" id='radio2' />
+                <label for='radio2'>Images</label>
+              </li> -->
+              <li>
+                <input type='radio' value='rules' name='dashboard' onclick="toggleDashboard()" id='radio3' checked />
+                <label for='radio3'>Rules</label>
+              </li>
+          </ul>
+      </div>
+
+      <div id="images-content">
+        <div class="title">
+          <span class="title-head"> Images </span>
+          Gallery
+        </div>
+
+      </div>
+      <div id="rules-content">
+        <div class="title">
+          <span class="title-head"> Rules </span>
+          Gallery
+        </div>
+        <form action="/admin" onsubmit="submitRules(event)">
+          <div class="content" id="rules-rows">
+            <div class="rule-row">
+              <div class="rule-add" onclick="addRuleRow()">Add Row</div>
+            </div>
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+
+
+      </div>
+      <template id="rulerow">
+        <div class="rule-row">
+          <select class="select-css">
+            <option value="" disabled selected>Select Rule</option>
+            <option value="kids">Under 15 only</option>
+            <option value="old">Above 40 only</option>
+            <option value="female">Female Only</option>
+            <option value="male">Male Only</option>
+            <option value="couple">Equal Number of Male and Female</option>
+            <option value="unhappy">Unhappy Only</option>
+            <option value="happy">Happy or Neutral Only</option>
+            <option value="default">Default</option>
+          </select>
+          <select class="select-css">
+            <option value="" disabled selected>Select Video</option>
+            <option value="1">Placeholder</option>
+            <option value="2">Placeholder</option>
+            <option value="3">Placeholder</option>
+            <option value="4">Placeholder</option>
+            <option value="5">Placeholder</option>
+            <option value="6">Placeholder</option>
+          </select>
+          <div onclick="onRuleDelete(event)" class="rule-delete">Delete</div>
+        </div>
+      </template>
+      <div id="videos-content">
+        <div class="title">
+          <span class="title-head"> Videos </span>
+          Gallery
+        </div>
+        <form action="/admin" onsubmit="onSubmit(event)">
+          <div class="content" id="video">
+            <div class="content_horizontal">
+              <div class="video-block" id="video1">
+                <label for="video1_title">Title</label>
+                <input type="text" id="video1_title" name="video1_title" placeholder="Title">
+                <label for="video1_icon">Icon</label>
+                <input type="text" id="video1_icon" name="video1_icon" placeholder="Icon">
+                <label for="video1_video">Video</label>
+                <input type="text" id="video1_video" name="video1_video" placeholder="Video URL">
+                <label for="video1_image">Image</label>
+                <input type="text" id="video1_image" name="video1_image" placeholder="Image URL">
+              </div>
+    
+              <div class="video-block" id="video2">
+                <label for="video2_title">Title</label>
+                <input type="text" id="video2_title" name="video2_title" placeholder="Title">
+                <label for="video2_icon">Icon</label>
+                <input type="text" id="video2_icon" name="video2_icon" placeholder="Icon">
+                <label for="video2_video">Video</label>
+                <input type="text" id="video2_video" name="video2_video" placeholder="Video URL">
+                <label for="video2_image">Image</label>
+                <input type="text" id="video2_image" name="video2_image" placeholder="Image URL">
+              </div>
+    
+            </div>
+            <div class="content_horizontal">
+              <div class="video-block" id="video3">
+                <label for="video3_title">Title</label>
+                <input type="text" id="video3_title" name="video3_title" placeholder="Title">
+                <label for="video3_icon">Icon</label>
+                <input type="text" id="video3_icon" name="video3_icon" placeholder="Icon">
+                <label for="video3_video">Video</label>
+                <input type="text" id="video3_video" name="video3_video" placeholder="Video URL">
+                <label for="video3_image">Image</label>
+                <input type="text" id="video3_image" name="video3_image" placeholder="Image URL">
+              </div>
+    
+              <div class="video-block" id="video4">
+                <label for="video4_title">Title</label>
+                <input type="text" id="video4_title" name="video4_title" placeholder="Title">
+                <label for="video4_icon">Icon</label>
+                <input type="text" id="video4_icon" name="video4_icon" placeholder="Icon">
+                <label for="video4_video">Video</label>
+                <input type="text" id="video4_video" name="video4_video" placeholder="Video URL">
+                <label for="video4_image">Image</label>
+                <input type="text" id="video4_image" name="video4_image" placeholder="Image URL">
+              </div></div>
+            <div class="content_horizontal">
+              <div class="video-block" id="video5">
+                <label for="video5_title">Title</label>
+                <input type="text" id="video5_title" name="video5_title" placeholder="Title">
+                <label for="video5_icon">Icon</label>
+                <input type="text" id="video5_icon" name="video5_icon" placeholder="Icon">
+                <label for="video5_video">Video</label>
+                <input type="text" id="video5_video" name="video5_video" placeholder="Video URL">
+                <label for="video5_image">Image</label>
+                <input type="text" id="video5_image" name="video5_image" placeholder="Image URL">
+              </div>
+    
+              <div class="video-block" id="video6">
+                <label for="video6_title">Title</label>
+                <input type="text" id="video6_title" name="video6_title" placeholder="Title">
+                <label for="video6_icon">Icon</label>
+                <input type="text" id="video6_icon" name="video6_icon" placeholder="Icon">
+                <label for="video6_video">Video</label>
+                <input type="text" id="video6_video" name="video6_video" placeholder="Video URL">
+                <label for="video6_image">Image</label>
+                <input type="text" id="video6_image" name="video6_image" placeholder="Image URL">
+              </div></div>
+            <input type="submit" value="Submit">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  <!-- Axios Plugin -->
+  <script src="js/axios.min.js"></script>
+  <!-- Socket.IO -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.slim.js"></script>
+      
+  <!-- Custom JS -->
+  <script src="js/admin.js"></script>
+
+</body>
+</html>

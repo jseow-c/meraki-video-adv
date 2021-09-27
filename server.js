@@ -27,6 +27,6 @@ const indexRouter = require("./main/router");
 app.use("/", indexRouter);
 
 // Listening for Express Server
-app.listen(process.env.PORT, function() {
+app.listen(process.env.PORT, function () {
   console.log(`Listening on port ${process.env.PORT}!`);
 });

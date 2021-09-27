@@ -1,1 +1,18 @@
-[]
+[
+  {
+    "rule": "female",
+    "video": "6"
+  },
+  {
+    "rule": "couple",
+    "video": "4"
+  },
+  {
+    "rule": "unhappy",
+    "video": "5"
+  },
+  {
+    "rule": "default",
+    "video": "3"
+  }
+]
